@@ -1,19 +1,15 @@
 /*----------------------------------------------------------------\
 @ Embedded Controller by Young-Keun Kim - Handong Global University
 Author           : Han Taegeon
-Modified         : 2023-10-14
+Modified         : 2023-11-06
 Language/ver     : C++ in Keil uVision
 
-Description      : Distributed to Students for LAB_GPIO_7-segment
 /----------------------------------------------------------------*/
 
 
 
-#include "stm32f4xx.h"
-#include "stm32f411xe.h"
+
 #include "ecGPIO.h"
-
-
 
 void GPIO_init(GPIO_TypeDef *Port, int pin, unsigned int mode){     
 	// mode  : Input(0), Output(1), AlterFunc(2), Analog(3)   
@@ -91,11 +87,11 @@ void sevensegment_decoder(uint8_t  num){
 	  //pins are sorted from upper left corner of the display to the lower right corner
     //the display has a common cathode
     //the display actally has 8 led's, the last one is a dot 
-		unsigned int led[8]={LED_PA5,LED_PA6,LED_PA7,LED_PB6,LED_PC7,LED_PA9,LED_PA8,LED_PB10};
+		unsigned int led[8]={LED_PB9,LED_PA6,LED_PA7,LED_PB6,LED_PC7,LED_PA9,LED_PA8,LED_PB10};
 	
 		//each led that has to light up gets a 1, every other led gets a 0
 		//its in order of the DigitalOut Pins above
-		unsigned int number[10][8]={
+		unsigned int number[11][8]={
 												{0,0,0,0,0,0,1,1},    //zero
 												{1,0,0,1,1,1,1,1},    //one
 												{0,0,1,0,0,1,0,1},    //two
@@ -106,6 +102,7 @@ void sevensegment_decoder(uint8_t  num){
 												{0,0,0,1,1,0,1,1},    //seven
 												{0,0,0,0,0,0,0,1},    //eight
 												{0,0,0,0,1,0,0,1},    //nine				
+											  {0,0,1,1,0,0,0,1},		//P
 		};
             //all led's off
         for(int i = 0; i<8;i++){led[i] = 0;}
@@ -113,7 +110,7 @@ void sevensegment_decoder(uint8_t  num){
             //display shows the number in this case 6
         for (int i=0; i<8; i++){led[i] = number[num][i];}         //the digit after "number" is displayed
 	
-		GPIO_write(GPIOA, LED_PA5,  led[0]);
+		GPIO_write(GPIOB, LED_PB9,  led[0]);
 		GPIO_write(GPIOA, LED_PA6,  led[1]);
 		GPIO_write(GPIOA, LED_PA7,  led[2]);
 		GPIO_write(GPIOB, LED_PB6,  led[3]);
@@ -130,6 +127,7 @@ void sevensegment_display_init(void){
 		GPIO_init(GPIOB, LED_PB6, OUTPUT);
 		GPIO_init(GPIOC, LED_PC7, OUTPUT);
 		GPIO_init(GPIOA, LED_PA9, OUTPUT);
+	
 }
 
 void sevensegment_display(uint8_t  num){
@@ -165,6 +163,37 @@ void sevensegment_display(uint8_t  num){
 
 }
 
+void LED_UP(uint8_t  num) {
+	unsigned int led[4] = {LED_A0, LED_A1, LED_B0, LED_C1};
+	unsigned int number[16][4]={
+												{0,0,0,0},    //zero			
+												{0,0,0,1},    //one       
+												{0,0,1,0},    //two       
+												{0,0,1,1},    //three     
+												{0,1,0,0},    //four
+												{0,1,0,1},    //five
+												{0,1,1,0},    //six
+												{0,1,1,1},    //seven
+												{1,0,0,0},    //eight
+												{1,0,0,1},    //nine		
+												{1,0,1,0},    //ten
+												{1,0,1,1},    //eleven
+												{1,1,0,0},    //twelve
+												{1,1,0,1},    //thirteen
+												{1,1,1,0},    //fourteen
+												{1,1,1,1},		//fifteen
+											};
+
+											for(int i = 0; i<4;i++){led[i] = 0;}
+											for (int i=0; i<4; i++){led[i] = number[num][i];}
+											
+		GPIO_write(GPIOA, LED_A0, led[0]);
+		GPIO_write(GPIOA, LED_A1, led[1]);
+		GPIO_write(GPIOB, LED_B0, led[2]);
+		GPIO_write(GPIOC, LED_C1, led[3]);
+}
+
+
 void LED_toggle(){
 	int led_state = GPIO_read(GPIOA, LED_PIN);
 	int time = 0;
@@ -172,4 +201,10 @@ void LED_toggle(){
 		time++;
 	
 	GPIO_write(GPIOA, LED_PIN, !led_state);
+}
+
+void mcu_init(GPIO_TypeDef *Port, int pin){
+	GPIO_pupd(Port, pin, EC_NONE);
+	GPIO_otype(Port, pin, EC_PUSH_PULL);
+	GPIO_ospeed(Port, pin, EC_FAST);
 }

@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------\
 @ Embedded Controller by Young-Keun Kim - Handong Global University
 Author           : Han Taegeon
-Modified         : 2023-10-14
+Modified         : 2023-10-25
 Language/ver     : C++ in Keil uVision
 
 Description      : Distributed to Students for LAB_EXTI

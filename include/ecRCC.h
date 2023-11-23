@@ -14,7 +14,8 @@ Description      : Distributed to Students for LAB_GPIO_7-segment
  extern "C" {
 #endif /* __cplusplus */
 
-//#include "stm32f411xe.h"
+//#include "ecSTM32F411.h"
+#include "ecSTM32F411.h"
 
 void RCC_HSI_init(void);
 void RCC_PLL_init(void);
