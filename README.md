@@ -27,14 +27,12 @@ Embedded Controller LAB: Ultrasonic Distance Sensor
 Embedded Controller LAB: Stepper Motor
 [Demo video](https://youtu.be/fhXFbCNvXks)
 
-Embedded Controller LAB: USART_LED  
-[Demo video](https://youtu.be/pQhTp_7-oOQ)
+Embedded Controller LAB: USART_LED  [Demo video](https://youtu.be/pQhTp_7-oOQ)
 
 Embedded Controller LAB: USART_Bluetooth 
 [Demo video](https://youtu.be/JlNbZKxEJf0)
 
-Embedded Controller LAB : Line Tracing RC Car(Manual Mode)  
-[Demo video](https://youtu.be/icd1kjkOtf8)
+Embedded Controller LAB : Line Tracing RC Car(Manual Mode)  [Demo video](https://youtu.be/icd1kjkOtf8)
 
 Embedded Controller LAB : Line Tracing RC Car(Automatic Mode) 
 [Demo video](https://youtu.be/Pg68u4XeRaY)
