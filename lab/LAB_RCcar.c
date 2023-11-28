@@ -9,7 +9,6 @@ Description      : USART_Bluetooth
 
 
 #include "ecSTM32F411.h"
-
 #define MAX_BUF    10
 #define END_CHAR    13
 #define MOTOR_A   2
@@ -17,9 +16,6 @@ Description      : USART_Bluetooth
 #define TRIG PA_6
 #define ECHO PB_6
 
-
-// static volatile uint8_t buffer[MAX_BUF]={0, };
-// static volatile uint8_t PC_string[MAX_BUF]={0, };
 static volatile uint8_t PC_data = 0;
 static volatile uint8_t BT_data = 0;
 static char mode = ' ';
@@ -28,7 +24,6 @@ static uint32_t count = 0;   // led count
 static uint32_t cnt = 3;	// angle control
 static int VER = 1;		// speed control
 static int auto_state = 0;
-
 
 static double dutyA = 0;      // PWM of Motor A 
 static double dutyB = 0;   // PWM of Motor B 
@@ -268,13 +263,13 @@ void ADC_IRQHandler(void){
 									auto_state = 1;
 								}
 								else if(value1 < 1000 && value2 > 1000){   // Go right
-									dutyA = 0.8;
+									dutyA = 0.81;
 									dutyB = 1;
 									auto_state = 2;
 								}
 								else if(value1 > 1000 && value2 < 1000){   // Go left
 									dutyA = 1;
-									dutyB = 0.8;
+									dutyB = 0.81;
 									auto_state = 3;
 								}
 								else if(value1 > 1000 && value2 > 1000){
@@ -282,7 +277,7 @@ void ADC_IRQHandler(void){
 									dutyB = 1;
 									auto_state = 4;
 								}
-								if(distance < 20){
+								if(distance < 10){
 									dutyA = 0;
 									dutyB = 0;
 									auto_state = 5;
