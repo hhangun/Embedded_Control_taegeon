@@ -33,8 +33,8 @@ Embedded Controller LAB: USART_LED
 Embedded Controller LAB: USART_Bluetooth 
 [Demo video](https://youtu.be/JlNbZKxEJf0)
 
-LAB : Line Tracing RC Car(Manual Mode)  
+Embedded Controller LAB : Line Tracing RC Car(Manual Mode)  
 [Demo video](https://youtu.be/icd1kjkOtf8)
 
-LAB : Line Tracing RC Car(Automatic Mode) 
+Embedded Controller LAB : Line Tracing RC Car(Automatic Mode) 
 [Demo video](https://youtu.be/Pg68u4XeRaY)
