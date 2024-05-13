@@ -1,4 +1,4 @@
-# EC-taegeon-793
+# Embedded_Control_taegeon
 
 Embedded Controller LAB1: Smart mini-fan with STM32-duino
 [Demo video](https://youtu.be/FbGgnJGKj8k)
